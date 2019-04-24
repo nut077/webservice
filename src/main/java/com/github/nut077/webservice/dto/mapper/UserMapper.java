@@ -15,7 +15,7 @@ public interface UserMapper {
 
     @BeforeMapping
     default void beforeMapping(UserDto userDto) {
-        Assert.hasText(userDto.getName(), () -> "Name must has text");
+        Assert.isTrue(userDto.getName().length() > 1, () -> "Name should have atleast 2 characters");
         Assert.hasText(userDto.getPassword(), () -> "Password must has text");
     }
 
