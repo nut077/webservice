@@ -20,12 +20,21 @@ public class UserService {
         return userMapper.map(userRepository.findAll());
     }
 
+    public UserDto find(Long id) {
+        return userMapper.map(userRepository.findById(id).orElseThrow(()-> new NotFoundException("User id " + id + " not found")));
+    }
+
     public UserDto findById(Long id) {
         return userMapper.map(userRepository.findById(id).orElseThrow(() -> new NotFoundException("User id: " + id + " not found")));
     }
 
     public UserDto save(UserDto userDto) {
         return userMapper.map(userRepository.save(userMapper.map(userDto)));
+    }
+
+    public UserDto update(Long id, UserDto userDto) {
+        find(id);
+        return userMapper.map(userRepository.saveAndFlush(userMapper.map(userDto)));
     }
 
     public void delete(Long id) {

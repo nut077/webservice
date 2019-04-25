@@ -19,6 +19,11 @@ public class UserController {
         return ResponseEntity.ok(userService.save(userDto));
     }
 
+    @PutMapping("/users/{id}")
+    public ResponseEntity<UserDto> update(@PathVariable Long id, @RequestBody UserDto userDto) {
+        return ResponseEntity.ok(userService.update(id, userDto));
+    }
+
     @GetMapping("/users")
     public ResponseEntity<List<UserDto>> users() {
         return ResponseEntity.ok(userService.findAll());

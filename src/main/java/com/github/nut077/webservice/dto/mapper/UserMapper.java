@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Mapper(componentModel = "spring",
-    uses = SetMapper.class
+        uses = SetMapper.class
 )
 public interface UserMapper {
 
@@ -29,6 +29,10 @@ public interface UserMapper {
     List<UserDto> map(Collection<User> entity);
 
     @InheritInverseConfiguration
+    @Mappings({
+            @Mapping(target = "createdDate", ignore = true),
+            @Mapping(target = "version", ignore = true)
+    })
     User map(UserDto dto);
 
     List<User> map(List<UserDto> dto);
