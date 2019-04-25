@@ -16,5 +16,5 @@ public class UserDto {
     @ApiModelProperty(notes = "Name should have atleast 2 characters")
     private String name;
     private String password;
-    private OffsetDateTime updatedDate;
+    private OffsetDateTime birthdate;
 }

@@ -17,11 +17,7 @@ public interface UserMapper {
     default void beforeMapping(UserDto userDto) {
         Assert.isTrue(userDto.getName().length() > 1, () -> "Name should have atleast 2 characters");
         Assert.hasText(userDto.getPassword(), () -> "Password must has text");
-    }
-
-    @AfterMapping
-    default void afterMapping(User user, @MappingTarget UserDto userDto) {
-        userDto.setUpdatedDate(userDto.getUpdatedDate() != null ? userDto.getUpdatedDate() : user.getCreatedDate());
+        Assert.hasText(userDto.getBirthdate().toString(), () -> "Birthdate must has text");
     }
 
     UserDto map(User entity);

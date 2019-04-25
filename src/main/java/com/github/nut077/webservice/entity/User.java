@@ -3,6 +3,8 @@ package com.github.nut077.webservice.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.OffsetDateTime;
+import java.util.List;
 
 @Entity(name = "Users")
 @SequenceGenerator(name = "users_seq")
@@ -21,6 +23,9 @@ public class User extends Common {
     private Long id;
 
     private String name;
-
     private String password;
+    private OffsetDateTime birthdate;
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
 }
