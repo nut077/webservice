@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @SequenceGenerator(name = "posts_seq")
 @Entity(name = "posts")
-public class Post {
+public class Post extends Common {
 
     @Id
     @GeneratedValue(generator = "posts_seq")
